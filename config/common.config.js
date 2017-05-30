@@ -7,11 +7,12 @@ const extractCSS = new ExtractTextPlugin('[name].css');
 const ROOT = path.resolve(__dirname, '..');
 
 function root(pathParts) {
-    if (typeof pathParts === 'string') {
-        pathParts = pathParts.split('/');
-    }
-    var arr = [ROOT].concat(pathParts);
-    return path.join.apply(path, arr);
+  if (typeof pathParts === 'string') {
+    pathParts = pathParts.split('/');
+  }
+
+  let arr = [ROOT].concat(pathParts);
+  return path.join.apply(path, arr);
 }
 
 const context = root('src');
@@ -21,61 +22,62 @@ module.exports = {
     entry: {
         polyfills: './polyfills.ts',
         vendor: './vendor.ts',
-        app: './main.ts'
-    },
+        app: './main.ts',
+      },
 
     output: {
         path: root('wwwroot'),
         publicPath: '/',
         filename: '[name].[hash].js',
-        chunkFilename: '[id].[hash].chunk.js'
-    },
+        chunkFilename: '[id].[hash].chunk.js',
+      },
 
     resolve: {
-        extensions: ['', '.ts', '.js']
-    },
+        extensions: ['', '.ts', '.js'],
+      },
 
     module: {
         loaders: [
             {
                 test: /\.ts$/,
-                loaders: ['awesome-typescript-loader?configFileName=' + root('src/tsconfig.json'), 'angular2-template-loader']
-            },
+                loaders: ['awesome-typescript-loader?configFileName=' + root('src/tsconfig.json'),
+                  'angular2-template-loader',],
+              },
             {
                 test: /\.html$/,
-                loader: 'html'
-            },
+                loader: 'html',
+              },
             {
                 test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-                loader: 'file?name=/assets/[name].[hash].[ext]'
-            },
+                loader: 'file?name=/assets/[name].[hash].[ext]',
+              },
             {
                 test: /\.css$/,
                 exclude: root('src'),
-                loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
-            },
+                loader: ExtractTextPlugin.extract('style', 'css?sourceMap'),
+              },
             {
                 test: /\.css$/,
                 include: root('src'),
-                loader: 'raw'
-            },
+                loader: 'raw',
+              },
             {
                 test: /\.css$/,
                 include: root('src/styles'),
-                loader: extractCSS.extract(['css'])
-            }
-        ]
-    },
+                loader: extractCSS.extract(['css']),
+              },
+        ],
+      },
 
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['app', 'vendor', 'polyfills']
-        }),
+            name: ['app', 'vendor', 'polyfills'],
+          }),
 
         new HtmlWebpackPlugin({
-            template: 'index.html'
-        }),
+            template: 'index.html',
+          }),
 
-        extractCSS
-    ]
-};
+        extractCSS,
+    ],
+  };

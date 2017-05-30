@@ -1,0 +1,1 @@
+{"version":3,"sources":["../webpack.config.js"],"names":["module","exports","require"],"mappings":";;AAAAA,OAAOC,OAAP,GAAiBC,QAAQ,yBAAR,CAAjB","file":"webpack.config.js","sourcesContent":["module.exports = require('./config/release.config');\n"]}

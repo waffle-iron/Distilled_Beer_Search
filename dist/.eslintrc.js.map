@@ -1,0 +1,1 @@
+{"version":3,"sources":["../.eslintrc.js"],"names":["module","exports","extends","plugins"],"mappings":";;AAAAA,OAAOC,OAAP,GAAiB;AACbC,aAAS,aADI;AAEbC,aAAS,CACL,QADK;AAFI,CAAjB","file":".eslintrc.js","sourcesContent":["module.exports = {\n    extends: 'airbnb-base',\n    plugins: [\n        'import',\n    ],\n  };\n"]}
